@@ -30,10 +30,11 @@ model AdministrativeLevel2 {
 
 //Municipio
 model AdministrativeLevel3 {
-  id    String               @id @default(auto()) @map("_id") @db.ObjectId
-  name  String               @unique
-  al2   AdministrativeLevel2 @relation(fields: [al2id], references: [id])
-  al2id String               @db.ObjectId
+  id      String               @id @default(auto()) @map("_id") @db.ObjectId
+  name    String               @unique
+  al2     AdministrativeLevel2 @relation(fields: [al2id], references: [id])
+  al2id   String               @db.ObjectId
+  holiday Holiday[]
 }
 
 enum HolidayType {
@@ -43,8 +44,10 @@ enum HolidayType {
 }
 
 model Holiday {
-  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  id          String               @id @default(auto()) @map("_id") @db.ObjectId
   descripcion String
   date        DateTime
   type        HolidayType
+  al3         AdministrativeLevel3 @relation(fields: [al3id], references: [id])
+  al3id       String               @db.ObjectId
 }
