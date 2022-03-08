@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { Cron, CronExpression, Timeout } from '@nestjs/schedule';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import { HolidayType } from '@prisma/client';
 import { chromium } from 'playwright';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -27,8 +27,7 @@ export class ScrapperService {
     'https://www.seg-social.es/wps/portal/wss/internet/CalendarioLaboral/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zijQw9TTxMDAx9Lcy9nA0c_Xw8TJydDYDAXD8cVYGBgbOpgWOQpbtPcFiwoYGFsX4UMfoNcABHA8L6o1CVYHEBWAEeK4JT8_QLckMjDLJMFAH0ywTE/?changeLanguage=es';
 
   constructor(private prisma: PrismaService) {}
-  // @Cron(CronExpression.EVERY_1ST_DAY_OF_MONTH_AT_MIDNIGHT)
-  @Timeout(1000)
+  @Cron(CronExpression.EVERY_1ST_DAY_OF_MONTH_AT_MIDNIGHT)
   async task() {
     const browser = await chromium.launch({
       headless: true,
