@@ -147,10 +147,10 @@ export class ScrapperService {
       await this.prisma.administrativeLevel1.create({
         data: {
           name: element.name,
-          al2: {
+          provinces: {
             create: element.provinces.map((province) => ({
               name: province.name,
-              al3: {
+              towns: {
                 create: province.towns.map((town) => ({
                   name: town.name,
                   holidays: {
