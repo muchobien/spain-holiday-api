@@ -38,9 +38,9 @@ model AdministrativeLevel3 {
 }
 
 enum HolidayType {
-  NATIONAL
-  AUTONOMOUS
-  LOCAL
+  Nacional
+  Autonomico
+  Local
 }
 
 model Holiday {
